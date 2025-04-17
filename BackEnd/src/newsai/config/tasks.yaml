@@ -1,0 +1,45 @@
+scrape_content_task:
+  description: >
+    Instructions :
+
+    1.  Tu vas recevoir une url et un contenu HTML d'un article : {url} - {content}.
+    2.  Identifie et extrais le contenu textuel principal de la page (le corps de l'article ou le texte central, en ignorant les menus, publicités, pieds de page, etc.).
+    3.  Extrait également l'url de l'image principale de l'article ou à défaut l'icône du site.
+    4.  Rédige un résumé de ce contenu principal en Français. Ce résumé doit impérativement :
+        * Rester fidèle à l'information originale : ne pas ajouter d'interprétation ou d'information externe.
+        * Conserver l'authenticité et les détails clés : inclure les faits essentiels, les chiffres significatifs, les conclusions ou points principaux de l'article, les noms propres importants (personnes, lieux, organisations mentionnés). Le but n'est pas une simplification extrême, mais une synthèse dense et précise.
+        * Refléter la substance de l'article original.
+        * Ecris l'article de manière aérée en inluant des sauts de ligne entre les paragraphes via des \n\n
+    5.  À partir de ce résumé, évalue la pertinence du sujet. Attribue une note entière de 1 à 10, en utilisant l'échelle suivante comme guide :
+        * 1-2 : Très faible (Promotion, anecdote, potin, impact quasi nul ou ultra-localisé).
+        * 3-4 : Faible/Modéré (Intérêt local/sectoriel limité, fait divers sans suite, mise à jour mineure).
+        * 5-6 : Moyen/Notable (Significatif pour un secteur/communauté, info nationale secondaire, développement suivi).
+        * 7-8 : Élevé/Très élevé (Impact national large, info majeure politique/éco/sociale, crise en développement).
+        * 9-10 : Critique/Exceptionnel (Impact massif généralisé/immédiat, crise majeure, événement historique).
+    6.  Classe le résumé dans une catégorie pertinente, en Français (ex: IA, Technologie, Économie, Politique, Sport, Culture, Santé, Divers).
+        * Utilise des catégories générales et évite les sous-catégories trop spécifiques.
+        * Evite les abréviations ou acronymes non expliqués (ex: "IA" au lieu de "Intelligence Artificielle").
+    7.  Donne un titre concis et pertinent au résumé, en Français.
+
+    Format et Contraintes de Sortie :
+
+    * Ta réponse doit être uniquement et exclusivement un objet JSON valide sans aucune autre phrase ou explication.
+    * Respecte strictement la structure JSON définie dans `expected_output`.
+    * Le champ `content` doit contenir le résumé généré à l'étape 4.
+    * Le champ `image_url` doit contenir l'URL extraite à l'étape 3.
+    * Aucune balise HTML, Markdown ou autre formatage (pas de gras, italique, listes à puces formatées, etc.) dans les valeurs du JSON.
+    * Ne mentionne PAS le nom du site web ou la source URL dans ta réponse.
+    * La réponse doit être obligatoirement en Français.
+
+  expected_output: >
+    Un objet JSON valide contenant les champs suivants :
+    {
+      "rating": <NOTE_ENTIÈRE_ICI>,
+      "category": "<CATÉGORIE_EN_FRANÇAIS_ICI>",
+      "content": "<RÉSUMÉ_GÉNÉRÉ_EN_FRANÇAIS_ICI>",
+      "title": "<TITRE_EN_FRANÇAIS_ICI>",
+      "image_url": "<URL_DE_L_IMAGE_EXTRAITE_ICI>"
+    }
+  agent: scraper
+
+

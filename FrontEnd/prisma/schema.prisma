@@ -1,0 +1,61 @@
+// datasource db: Defines the database connection.
+datasource db {
+  provider = "mysql" // Changed provider to mysql
+  url      = env("DATABASE_URL") // Make sure this points to your MySQL DB in .env
+}
+
+// generator client: Specifies that Prisma Client should be generated.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// model User: Maps to the User table in your SQL schema.
+model User {
+  id         String        @id @db.VarChar(191) // Matches varchar(191) PK
+  name       String?       @unique(map: "User_Name_key") @db.VarChar(191) // Matches unique constraint name
+  password   String        @db.VarChar(191) // Matches NOT NULL in SQL implicitly
+  created_at DateTime      @default(now()) @db.DateTime(3)
+  updated_at DateTime      @updatedAt @db.DateTime(3)
+  ReadArticle ReadArticle[] // Relation to articles read by the user
+
+  @@map("User") // Explicitly maps to the 'User' table name
+}
+
+// model articles: Maps to the articles table.
+model articles {
+  id         Int           @id @default(autoincrement()) // Matches int PK AI
+  url        String?       @db.Text
+  image_url  String?       @db.Text
+  title      String?       @db.Text
+  summary    String?       @db.Text
+  rating     Int?
+  category   String?       @db.VarChar(255)
+  Date_Feed  String?       @db.Text // Kept as Text based on SQL
+  created_at DateTime?     @default(now()) @db.Timestamp(0) // Matches timestamp default CURRENT_TIMESTAMP
+  ReadArticle ReadArticle[] // Relation to read records for this article
+
+  @@map("articles") // Explicitly maps to the 'articles' table name
+}
+
+// model ReadArticle: Maps to the ReadArticle join table.
+model ReadArticle {
+  id        Int       @id @default(autoincrement()) // Matches int PK AI
+  userId    String    @db.VarChar(191) // Matches FK type
+  articleId Int       // Matches FK type
+  read_at   DateTime  @default(now()) @db.DateTime(3)
+
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade, map: "ReadArticle_userId_fkey")
+  article articles @relation(fields: [articleId], references: [id], onDelete: Cascade, map: "ReadArticle_articleId_fkey")
+
+  @@unique([userId, articleId], map: "ReadArticle_userId_articleId_key") // Matches unique constraint
+  @@index([articleId], map: "ReadArticle_articleId_fkey") // Matches index explicitly although Prisma adds it for FKs
+  @@map("ReadArticle") // Explicitly maps to the 'ReadArticle' table name
+}
+
+// model URL: Maps to the URL table.
+model URL {
+  ID  Int    @id @default(autoincrement()) // Matches int PK AI
+  URL String @db.Text // Matches text NOT NULL
+
+  @@map("URL") // Explicitly maps to the 'URL' table name
+}
