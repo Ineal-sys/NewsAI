@@ -25,7 +25,7 @@ Le backend de l'application NewsAI est conçu pour traiter, analyser et stocker 
 
 1. **Cloner le dépôt** :
    ```bash
-   git clone https://github.com/votre-repo/newsai.git
+   git clone https://github.com/Ineal-sys/NewsAI.git
    cd newsai/BackEnd
    ```
 
