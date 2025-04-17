@@ -143,6 +143,6 @@ Le projet expose plusieurs points d'accès API (routes) pour interagir avec les 
         *   `limit` (optionnel, `number`) : Nombre d'articles par page (défaut: `15`).
         *   `includeRead` (optionnel, `boolean`) : Si `true`, inclut les articles marqués comme lus dans les résultats (ne fonctionne que pour les utilisateurs connectés). (défaut: `false`, les articles lus sont exclus pour les utilisateurs connectés).
 
-## Déploiement
+## Contribution
 
-Suivez les instructions de déploiement spécifiques à votre hébergeur (par exemple, Docker Hub, AWS ECS, Google Cloud Run, etc.) en utilisant l'image Docker construite.
+Les contributions sont les bienvenues ! Veuillez soumettre une pull request ou ouvrir une issue pour discuter des changements que vous souhaitez apporter.
