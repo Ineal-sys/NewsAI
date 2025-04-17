@@ -25,7 +25,7 @@ Le backend de l'application NewsAI est conçu pour traiter, analyser et stocker 
 
 1. **Cloner le dépôt** :
    ```bash
-   git clone https://github.com/votre-repo/newsai.git
+   git clone https://github.com/Ineal-sys/NewsAI.git
    cd newsai/BackEnd
    ```
 
@@ -75,15 +75,6 @@ Vous pouvez modifier ou ajouter de nouvelles configurations pour étendre les fo
 - `knowledge/` : Contient des fichiers de connaissances ou de préférences utilisateur.
 - `pyproject.toml` : Fichier de configuration pour le projet Python.
 
-## Développement
-
-### Lancer un environnement de développement
-
-1. Activez votre environnement virtuel.
-2. Installez les dépendances de développement :
-   ```bash
-   pip install -r requirements-dev.txt
-   ```
 
 ## Contribution
 
