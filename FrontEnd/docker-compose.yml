@@ -3,16 +3,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: newsai # Adaptez le nom de l'image si vous le souhaitez
-    container_name: newsai # Adaptez le nom du conteneur si vous le souhaitez
+    image: newsai
+    container_name: newsai
     ports:
       - "3002:3000"
     env_file:
       - .env.production.local
     restart: always
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
