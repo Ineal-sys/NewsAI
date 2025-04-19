@@ -59,7 +59,7 @@ MYSQL_HOST=localhost
 MYSQL_DATABASE=newsai
 
 # Configuration de l'IA
-MODEL=gpt-4
+MODEL=gemini/gemini-2.0-flash
 GEMINI_API_KEY=votre_cle_api
 ```
 
